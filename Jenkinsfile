@@ -2,23 +2,19 @@ pipeline{
     agent any
     stages{
         stage("Sonar Quality Check"){
-            // agent {
-            //     docker {
-            //         image 'openjdk:11'
-            //     }
-            // }
-            agent none
+            stage("docker build & docker push"){
             steps{
                 script{
-                    //withSonarQubeEnv("sonarqube-8.9.7") {  
-                        sh 'pwd ;ls;md5sum build.gradle'
-                        
-                        sh 'chmod +x gradlew'      //used to execute permission to gradlew file
-                        
-                        sh './gradlew build'   // used for checking gradlew with sonar rules                   
-                    //}    
-                }                                                                 
+                    withCredentials([string(credentialsId: 'docker_pass', variable: 'docker_password')]) {
+                             sh '''
+                                docker build -t 34.125.70.200:8083/springapp:${VERSION} .
+                                docker login -u admin -p $docker_password 34.125.70.200:8083 
+                                docker push  34.125.70.200:8083/springapp:${VERSION}
+                                docker rmi 34.125.70.200:8083/springapp:${VERSION}
+                            '''
+                    }
+                }
             }
-        }
-    }
+        }   
+    }   
 }    
