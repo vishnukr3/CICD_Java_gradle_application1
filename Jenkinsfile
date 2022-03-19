@@ -13,11 +13,11 @@ pipeline{
                                 docker rmi 34.125.70.200:8083/springapp:${VERSION}
                              '''
                             }
-                        }
                     }
                 }
-            }   
+            }
         }   
-    }
-}   
+    }   
+}
+   
 
