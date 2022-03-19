@@ -25,10 +25,16 @@ test {
 	useJUnitPlatform()
 }
 
+# gradle.properties
+systemProp.sonar.host.url=http://34.125.91.180:9000
 
 sonarqube {
     properties {
         property 'sonar.host.url', 'http://34.125.91.180:9000'
         property 'sonar.login', 'cd33c62559a58e34e2029f3eea78ba4d2e292b82'
+		property "sonar.sourceEncoding", "UTF-8"
+		//property "sonar.sources", "src"
+		//property "sonar.branch", "Foo"
+		
     }
 }
