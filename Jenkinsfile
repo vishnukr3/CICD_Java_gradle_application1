@@ -11,10 +11,13 @@ pipeline{
                                 docker login -u admin -p $docker_password 34.125.70.200:8083 
                                 docker push  34.125.70.200:8083/springapp:${VERSION}
                                 docker rmi 34.125.70.200:8083/springapp:${VERSION}
-                            '''
+                             '''
+                            }
+                        }
                     }
                 }
-            }
+            }   
         }   
-    }   
-}    
+    }
+}   
+
