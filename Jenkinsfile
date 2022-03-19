@@ -1,31 +1,24 @@
 pipeline{
-    agent any 
-    environment{
-        VERSION = "${env.BUILD_ID}"
-    }
+    agent any
     stages{
-        stage("sonar quality check"){
-            //agent {
-            //    docker {
-            //        image 'openjdk:11'
-            //    }
-            //}
+        stage("Sonar Quality Check"){
+            // agent {
+            //     docker {
+            //         image 'openjdk:11'
+            //     }
+            // }
             agent none
             steps{
                 script{
-                    withSonarQubeEnv(credentialsId: 'sonar-token') {
-                            sh 'chmod +x gradlew'
-                            sh './gradlew sonarqube'
-                    }
-                }
+                    //withSonarQubeEnv("sonarqube-8.9.7") {  
+                        sh 'pwd ;ls;md5sum build.gradle'
+                        
+                        sh 'chmod +x gradlew'      //used to execute permission to gradlew file
+                        
+                        sh './gradlew sonarqube'   // used for checking gradlew with sonar rules                   
+                    //}    
+                }                                                                 
             }
         }
     }
-    
-                   
- }
-                
-                   
-        
-	   
-
+}    
