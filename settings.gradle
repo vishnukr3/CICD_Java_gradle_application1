@@ -1,3 +1,4 @@
-rootProject.name = 'root'
+rootProject.name = 'sampleWeb'
 rootProject.buildFileName = 'build.gradle.kts'
+include ':app'
 
